@@ -1,4 +1,4 @@
-package br.com.meuouvinte.model;
+package br.com.meuouvinte.modelos;
 
 import java.io.Serializable;
 
@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "PROGRAMA")
-public class Programa implements Serializable {
+public class Programa implements Serializable, EntidadePersistencia {
 
 	private static final long serialVersionUID = 1L;
 

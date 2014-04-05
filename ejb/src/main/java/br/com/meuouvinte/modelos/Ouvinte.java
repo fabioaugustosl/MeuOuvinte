@@ -1,4 +1,4 @@
-package br.com.meuouvinte.model;
+package br.com.meuouvinte.modelos;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
-public class Ouvinte implements Serializable, Comparable<Ouvinte>{
+public class Ouvinte implements Serializable, Comparable<Ouvinte>, EntidadePersistencia{
 
 	private static final long serialVersionUID = 1L;
 	

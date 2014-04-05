@@ -1,4 +1,4 @@
-package br.com.meuouvinte.model;
+package br.com.meuouvinte.modelos;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "OUVINTE_PROMOCAO")
-public class OuvintePromocao implements Serializable {
+public class OuvintePromocao implements Serializable, EntidadePersistencia {
 
 	private static final long serialVersionUID = 1L;
 

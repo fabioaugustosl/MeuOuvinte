@@ -1,4 +1,4 @@
-package br.com.meuouvinte.model;
+package br.com.meuouvinte.modelos;
 
 import java.io.Serializable;
 
@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.Email;
 
 @Entity
 @Table(name = "USUARIO")
-public class Usuario implements Serializable {
+public class Usuario implements Serializable, EntidadePersistencia {
 
 	private static final long serialVersionUID = 1L;
 
