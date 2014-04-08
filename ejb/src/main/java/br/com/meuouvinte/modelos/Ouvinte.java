@@ -7,14 +7,26 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+@Entity
+@Table(name="OUVINTE")
+@NamedQueries({
+	@NamedQuery(name="Ouvinte.recuperarPorIdPromocao",
+				query="SELECT o FROM Ouvinte o JOIN o.sorteios s WHERE s.promocao.id = :idPromocao"),
+	@NamedQuery(name="Ouvinte.ouvintesPorId",
+				query="SELECT o FROM Ouvinte o WHERE o.id in (:ids)")
+})
 public class Ouvinte implements Serializable, Comparable<Ouvinte>, EntidadePersistencia{
 
 	private static final long serialVersionUID = 1L;
