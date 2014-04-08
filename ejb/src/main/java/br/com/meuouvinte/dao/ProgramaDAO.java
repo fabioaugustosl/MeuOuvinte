@@ -2,6 +2,8 @@ package br.com.meuouvinte.dao;
 
 import java.io.Serializable;
 
+import javax.persistence.Query;
+
 import br.com.meuouvinte.modelos.Programa;
 
 public class ProgramaDAO extends GeralDAO<Programa> implements IProgramaDAO, Serializable{
@@ -10,8 +12,9 @@ public class ProgramaDAO extends GeralDAO<Programa> implements IProgramaDAO, Ser
 
 	@Override
 	public Programa recuperar(String nome) {
-		// TODO Auto-generated method stub
-		return null;
+		Query qry = getDatastore().createNamedQuery("Programa.recuperarPorNome");
+		qry.setParameter("nome", nome);
+		return (Programa) qry.getSingleResult();
 	}
 	
 }

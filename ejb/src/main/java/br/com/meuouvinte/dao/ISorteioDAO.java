@@ -2,9 +2,11 @@ package br.com.meuouvinte.dao;
 
 import java.util.List;
 
+import br.com.meuouvinte.modelos.Ouvinte;
+import br.com.meuouvinte.modelos.Promocao;
 import br.com.meuouvinte.modelos.Sorteio;
 
 public interface ISorteioDAO extends OperacacoesCrud<Sorteio> {
-	public void salvar(Integer idPromocao, Integer idOuvinte, String emailUsuarioResponsavel);
+	public void salvar(Promocao promocao, Ouvinte ouvinte, String emailUsuarioResponsavel);
 	public abstract List<Sorteio> recuperarPorOuvinte(Integer idOuvinte);
 }

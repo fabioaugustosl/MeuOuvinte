@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -16,6 +18,12 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "PROMOCAO")
+@NamedQueries({
+	@NamedQuery(name="Promocao.recuperarPromocaoAtivas",
+			query="SELECT p FROM Promocao p WHERE :data BETWEEN p.dataInicio AND p.dataFim  "),
+	@NamedQuery(name="Promocao.recuperarPromocoes",
+			query="SELECT p FROM promocao p WHERE p.id in (:ids)")
+})
 public class Promocao implements Serializable, EntidadePersistencia {
 
 	private static final long serialVersionUID = 1L;

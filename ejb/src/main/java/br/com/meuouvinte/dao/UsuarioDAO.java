@@ -2,6 +2,8 @@ package br.com.meuouvinte.dao;
 
 import java.io.Serializable;
 
+import javax.persistence.Query;
+
 import br.com.meuouvinte.modelos.Usuario;
 
 public class UsuarioDAO extends GeralDAO<Usuario> implements IUsuarioDAO, Serializable{
@@ -10,8 +12,9 @@ public class UsuarioDAO extends GeralDAO<Usuario> implements IUsuarioDAO, Serial
 
 	@Override
 	public Usuario recuperar(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		Query qry = getDatastore().createNamedQuery("Usuario.usuarioPorEmail");
+		qry.setParameter("email", email);
+		return (Usuario) qry.getSingleResult();
 	}
 	
 }

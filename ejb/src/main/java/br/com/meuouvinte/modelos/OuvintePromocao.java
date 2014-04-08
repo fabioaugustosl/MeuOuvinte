@@ -9,12 +9,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "OUVINTE_PROMOCAO")
+@NamedQueries({
+	@NamedQuery(name="OuvintePromocao.recuperarPorOuvinte",
+			query="SELECT op FROM OuvintePromocao op WHERE op.ouvinte.id = :idOuvinte "),
+	@NamedQuery(name="OuvintePromocao.recuperarPorPromocao",
+			query="SELECT op FROM OuvintePromocao op WHERE op.promocao.id = :idPromocao "),
+	@NamedQuery(name="OuvintePromocao.recuperarPorOuvinteEPromocao",
+			query="SELECT op FROM OuvintePromocao op WHERE op.ouvinte.id = :idOuvinte AND op.promocao.id = :idPromocao ")
+})
 public class OuvintePromocao implements Serializable, EntidadePersistencia {
 
 	private static final long serialVersionUID = 1L;

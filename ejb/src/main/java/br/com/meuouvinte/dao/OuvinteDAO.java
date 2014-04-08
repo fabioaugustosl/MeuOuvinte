@@ -20,7 +20,6 @@ public class OuvinteDAO extends GeralDAO<Ouvinte> implements IOuvinteDAO, Serial
 
 	@Override
 	public List<Ouvinte> carregarOuvintes(List<Integer> idsOuvintes) {
-		
 		Query qry = getDatastore().createNamedQuery("Ouvinte.ouvintesPorId");
 		qry.setParameter("ids", idsOuvintes);
 		return qry.getResultList();

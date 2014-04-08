@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -13,6 +15,10 @@ import org.hibernate.validator.constraints.Email;
 
 @Entity
 @Table(name = "USUARIO")
+@NamedQueries({
+	@NamedQuery(name="Usuario.usuarioPorEmail",
+				query="SELECT u FROM Usuario u WHERE u.email = :email")
+})
 public class Usuario implements Serializable, EntidadePersistencia {
 
 	private static final long serialVersionUID = 1L;
