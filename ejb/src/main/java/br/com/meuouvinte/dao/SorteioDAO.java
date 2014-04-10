@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 import br.com.meuouvinte.modelos.Ouvinte;
 import br.com.meuouvinte.modelos.Promocao;
 import br.com.meuouvinte.modelos.Sorteio;
 
+@Stateless
 public class SorteioDAO extends GeralDAO<Sorteio> implements ISorteioDAO, Serializable{
 
 	private static final long serialVersionUID = 1L;

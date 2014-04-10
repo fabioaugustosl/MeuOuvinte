@@ -4,13 +4,12 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 import br.com.meuouvinte.modelos.Promocao;
 
-
+@Stateless
 public class PromocaoDAO extends GeralDAO<Promocao> implements IPromocaoDAO, Serializable{
 
 	private static final long serialVersionUID = 1L;

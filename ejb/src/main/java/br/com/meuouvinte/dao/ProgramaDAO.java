@@ -2,10 +2,12 @@ package br.com.meuouvinte.dao;
 
 import java.io.Serializable;
 
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 import br.com.meuouvinte.modelos.Programa;
 
+@Stateless
 public class ProgramaDAO extends GeralDAO<Programa> implements IProgramaDAO, Serializable{
 
 	private static final long serialVersionUID = 1L;

@@ -2,10 +2,13 @@ package br.com.meuouvinte.dao;
 
 import java.util.List;
 
+import javax.ejb.Local;
+
 import br.com.meuouvinte.modelos.Ouvinte;
 import br.com.meuouvinte.modelos.OuvintePromocao;
 import br.com.meuouvinte.modelos.Promocao;
 
+@Local
 public interface IOuvintePromocaoDAO extends OperacacoesCrud<OuvintePromocao> {
 	public void salvar(Ouvinte ouvinte, Promocao promocao) throws Exception;
 	public List<OuvintePromocao> recuperarPorPromocao(Integer idPromocao);

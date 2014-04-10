@@ -23,9 +23,14 @@ import javax.validation.constraints.NotNull;
 @Table(name="OUVINTE")
 @NamedQueries({
 	@NamedQuery(name="Ouvinte.recuperarPorIdPromocao",
-				query="SELECT o FROM Ouvinte o JOIN o.sorteios s WHERE s.promocao.id = :idPromocao"),
+				query="SELECT o FROM Ouvinte o JOIN o.ouvintePromocoes s WHERE s.promocao.id = :idPromocao"),
 	@NamedQuery(name="Ouvinte.ouvintesPorId",
-				query="SELECT o FROM Ouvinte o WHERE o.id in (:ids)")
+				query="SELECT o FROM Ouvinte o WHERE o.id in (:ids)"),
+	@NamedQuery(name="Ouvinte.pesquisar",
+				query="SELECT o FROM Ouvinte o "
+						+ " WHERE  UPPER(o.cpf) LIKE UPPER(:padrao) "
+						+ " OR UPPER(o.nome) LIKE UPPER(:padrao) "
+						+ " OR UPPER(o.telefone) LIKE UPPER(:padrao)")
 })
 public class Ouvinte implements Serializable, Comparable<Ouvinte>, EntidadePersistencia{
 
@@ -66,6 +71,9 @@ public class Ouvinte implements Serializable, Comparable<Ouvinte>, EntidadePersi
 
 	@OneToMany(mappedBy="sorteado")
 	private List<Sorteio> sorteios;
+	
+	@OneToMany(mappedBy="ouvinte")
+	private List<OuvintePromocao> ouvintePromocoes;
 	
 	@Transient
 	private Promocao promocao;
@@ -170,11 +178,11 @@ public class Ouvinte implements Serializable, Comparable<Ouvinte>, EntidadePersi
 	}
 
 	public String getStatusSorteado() {
-		return (isSorteado() ) ? "Sim" : "N�o";
+		return (isSorteado() ) ? "Sim" : "Não";
 	}
 
 	public Boolean isSorteado() {
-		return (sorteado == null) ? Boolean.FALSE : Boolean.TRUE;
+		return (sorteios == null || sorteios.isEmpty()) ? Boolean.FALSE : Boolean.TRUE;
 	}
 
 	public Sorteio getSorteado() {
@@ -184,7 +192,14 @@ public class Ouvinte implements Serializable, Comparable<Ouvinte>, EntidadePersi
 	public void setSorteado(Sorteio sorteado) {
 		this.sorteado = sorteado;
 	}
+	
+	public List<OuvintePromocao> getOuvintePromocoes() {
+		return ouvintePromocoes;
+	}
 
+	public void setOuvintePromocoes(List<OuvintePromocao> ouvintePromocoes) {
+		this.ouvintePromocoes = ouvintePromocoes;
+	}
 
 	@Override
 	public int compareTo(Ouvinte o) {

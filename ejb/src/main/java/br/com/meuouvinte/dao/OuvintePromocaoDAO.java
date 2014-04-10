@@ -4,13 +4,14 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 import br.com.meuouvinte.modelos.Ouvinte;
 import br.com.meuouvinte.modelos.OuvintePromocao;
 import br.com.meuouvinte.modelos.Promocao;
 
-
+@Stateless
 public class OuvintePromocaoDAO extends GeralDAO<OuvintePromocao> implements IOuvintePromocaoDAO, Serializable{
 
 	private static final long serialVersionUID = 1L;
