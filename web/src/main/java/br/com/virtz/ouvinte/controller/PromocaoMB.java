@@ -1,32 +1,38 @@
-package br.com.meuouvinte.managedbean;
+package br.com.virtz.ouvinte.controller;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.inject.Inject;
 
-import br.com.meuouvinte.bean.Ouvinte;
-import br.com.meuouvinte.bean.Promocao;
-import br.com.meuouvinte.models.PromocaoModel;
-import br.com.meuouvinte.servlet.BasePageBean;
-
-import com.google.inject.Inject;
+import br.com.meuouvinte.modelos.Ouvinte;
+import br.com.meuouvinte.modelos.Promocao;
+import br.com.meuouvinte.modelos.Sorteio;
+import br.com.virtz.ouvinte.service.PromocaoService;
 
 
-@ManagedBean(name = "promocaoMB")
-@SessionScoped
-public class PromocaoMB extends BasePageBean {
+@ManagedBean
+@ViewScoped
+public class PromocaoMB {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private PromocaoModel promocaoModel;
+	private PromocaoService promocaoService;
 
 	private Promocao promocao;
 
 	private List<Promocao> promocoes;
 
+	private List<Promocao> promocoesAtivas;
+
+	private List<Ouvinte> ouvintesPromocao;
+
+	private Promocao promocaoSelecionada;
 
 	public PromocaoMB() {
 		super();
@@ -34,14 +40,19 @@ public class PromocaoMB extends BasePageBean {
 	}
 
 	public String salvar() {
-		promocaoModel.salvar(promocao);
+		if(promocao.getDataFim().before(promocao.getDataInicio())){
+			FacesContext.getCurrentInstance().addMessage("", new FacesMessage("A data de início deve ser antes da data final da promoão."));
+			return null;
+		}
+		promocaoService.salvar(promocao);
+		FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Promoão salva com sucesso!"));
+		
 		carregarPromocoes();
 		return null;
 	}
 
 	public String salvarAjax(ActionEvent event){
-		promocaoModel.salvarAjax(event, promocao);
-		carregarPromocoes();
+		salvar();
 		return null;
 	}
 
@@ -50,17 +61,37 @@ public class PromocaoMB extends BasePageBean {
 	}
 
 	public void remover(ActionEvent event){
-		promocaoModel.remover(promocao);
+		// TODO : importar o sorteio service e recuperar se a promoção já foi utilizada.
+		
+		/*List<Sorteio> sorteios = sorteioDAO.recuperar(promocao.getId().getId());
+		
+		if(sorteios != null && !sorteios.isEmpty()){
+			FacesContext.getCurrentInstance().addMessage("", new FacesMessage("A promo��o "+promocao.getNome()+" n�o pode ser exclu�da porque j� foi realizado seu sorteio."));
+			return null;
+		}*/
+
+		promocaoService.remover(promocao);
+
+		FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Promoção removida com sucesso!"));
 		novo();
 		carregarPromocoes();
 	}
 
 	public void remover(){
-		promocaoModel.remover(promocao);
+		promocaoService.remover(promocao);
 		novo();
 		carregarPromocoes();
 	}
 
+	public void carregarPromocoes(){
+		promocoes = promocaoService.recuperarPromocoes();
+	}
+
+	public void carregarPromocoesAtivas() {
+		promocoesAtivas = promocaoService.recuperarPromocoesAtivas();
+	}
+
+	
 	public Promocao getPromocao() {
 		return promocao;
 	}
@@ -69,9 +100,6 @@ public class PromocaoMB extends BasePageBean {
 		this.promocao = promocao;
 	}
 
-	public void carregarPromocoes(){
-		promocoes = promocaoModel.recuperarPromocoes();
-	}
 	public List<Promocao> getPromocoes() {
 		return promocoes;
 	}
@@ -80,28 +108,41 @@ public class PromocaoMB extends BasePageBean {
 		this.promocoes = promocoes;
 	}
 
-	public Promocao getPromocaoSelecionada() {
-		return promocaoModel.getPromocaoSelecionada();
-	}
-
-	public void setPromocaoSelecionada(Promocao promocaoSelecionada) {
-		promocaoModel.setPromocaoSelecionada(promocaoSelecionada);
-	}
-
 	public void carregarOuvintesDePromocao(){
-		promocaoModel.carregarOuvintesDePromocao();
+		ouvintesPromocao = promocaoService.recuperarOuvintesDePromocao(promocaoSelecionada);
 	}
 
 	public List<Ouvinte> getOuvintesPromocao(){
-		return promocaoModel.getOuvintesPromocao();
+		return ouvintesPromocao;
+	}
+	
+	public Promocao getPromocaoSelecionada() {
+		return promocaoSelecionada;
 	}
 
-	public PromocaoModel getPromocaoModel() {
-		return promocaoModel;
+	public void setPromocaoSelecionada(Promocao promocaoSelecionada) {
+		this.promocaoSelecionada = promocaoSelecionada;
 	}
 
-	public void setPromocaoModel(PromocaoModel promocaoModel) {
-		this.promocaoModel = promocaoModel;
+	public PromocaoService getPromocaoService() {
+		return promocaoService;
 	}
+
+	public void setPromocaoService(PromocaoService promocaoService) {
+		this.promocaoService = promocaoService;
+	}
+
+	public List<Promocao> getPromocoesAtivas() {
+		return promocoesAtivas;
+	}
+
+	public void setPromocoesAtivas(List<Promocao> promocoesAtivas) {
+		this.promocoesAtivas = promocoesAtivas;
+	}
+
+	public void setOuvintesPromocao(List<Ouvinte> ouvintesPromocao) {
+		this.ouvintesPromocao = ouvintesPromocao;
+	}
+	
 
 }

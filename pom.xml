@@ -17,9 +17,9 @@
         </license>
     </licenses>
     <modules>
-        <module>ejb</module>
-        <module>web</module>
-        <module>ear</module>
+        <module>ouvinte-ejb</module>
+        <module>ouvinte-web</module>
+        <module>ouvinte-ear</module>
     </modules>
 
     <properties>

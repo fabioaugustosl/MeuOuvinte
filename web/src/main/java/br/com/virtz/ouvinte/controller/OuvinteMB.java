@@ -9,6 +9,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
+import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
 
 import br.com.meuouvinte.modelos.Ouvinte;
@@ -21,14 +22,8 @@ public class OuvinteMB {
 
 	private static final long serialVersionUID = 1L;
 
-	/*
-	 * @Inject private PromocaoModel promocaoModel;
-	 */
 
-	/*
-	 * @Inject private CidadeModel cidadeModel;
-	 */
-//	@EJB
+	@Inject
 	private IOuvinteService ouvinteService;
 
 	private Ouvinte ouvinte;
