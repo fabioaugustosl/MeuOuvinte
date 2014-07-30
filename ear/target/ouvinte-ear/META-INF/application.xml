@@ -3,8 +3,8 @@
   <display-name>ouvinte-ear</display-name>
   <module>
     <web>
-      <web-uri>ouvinte-web.war</web-uri>
-      <context-root>/ouvinte-web</context-root>
+      <web-uri>webapp.war</web-uri>
+      <context-root>/webapp</context-root>
     </web>
   </module>
   <module>

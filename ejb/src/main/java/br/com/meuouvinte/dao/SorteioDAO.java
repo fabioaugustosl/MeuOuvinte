@@ -23,6 +23,13 @@ public class SorteioDAO extends GeralDAO<Sorteio> implements ISorteioDAO, Serial
 		qry.setParameter("idOuvinte", idOuvinte);
 		return qry.getResultList();
 	}
+	
+	@Override
+	public List<Sorteio> recuperarPorPromocao(Integer idPromocao) {
+		Query qry = getDatastore().createNamedQuery("Sorteio.recuperarPoridPromocao");
+		qry.setParameter("idPromocao", idPromocao);
+		return qry.getResultList();
+	}
 
 	@Override
 	public void salvar(Promocao promocao, Ouvinte ouvinte, String emailUsuarioResponsavel) {

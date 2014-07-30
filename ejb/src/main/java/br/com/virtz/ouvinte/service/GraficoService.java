@@ -106,13 +106,13 @@ public class GraficoService implements IGraficoService {
 	}
 
 
-	public PieChartModel getPizzaOuvinteCidade() {
+	/*public PieChartModel getPizzaOuvinteCidade() {
 		return pizzaOuvinteCidade;
 	}
 
 
 	public PieChartModel getPizzaOuvinteIdade() {
 		return pizzaOuvinteIdade;
-	}
+	}*/
 
 }

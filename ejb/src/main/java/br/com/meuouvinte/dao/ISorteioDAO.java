@@ -12,4 +12,5 @@ import br.com.meuouvinte.modelos.Sorteio;
 public interface ISorteioDAO extends OperacacoesCrud<Sorteio> {
 	public void salvar(Promocao promocao, Ouvinte ouvinte, String emailUsuarioResponsavel);
 	public abstract List<Sorteio> recuperarPorOuvinte(Integer idOuvinte);
+	public List<Sorteio> recuperarPorPromocao(Integer idPromocao);
 }

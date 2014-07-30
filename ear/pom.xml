@@ -27,7 +27,8 @@
         <!-- Depend on the ejb module and war so that we can package them -->
         <dependency>
             <groupId>br.com.virtz</groupId>
-            <artifactId>ouvinte-web</artifactId>
+            <artifactId>webapp</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
             <type>war</type>
         </dependency>
         <dependency>

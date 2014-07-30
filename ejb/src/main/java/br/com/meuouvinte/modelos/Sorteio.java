@@ -19,7 +19,9 @@ import javax.persistence.TemporalType;
 @Table(name = "SORTEIO")
 @NamedQueries({
 	@NamedQuery(name="Sorteio.recuperarPorIdOuvinte",
-				query="SELECT s FROM Sorteio s WHERE s.sorteado.id = :idOuvinte")
+				query="SELECT s FROM Sorteio s WHERE s.sorteado.id = :idOuvinte"),
+	@NamedQuery(name="Sorteio.recuperarPorIdPromocao",
+				query="SELECT s FROM Sorteio s WHERE s.promocao.id = :idPromocao")
 })
 public class Sorteio implements Serializable, EntidadePersistencia {
 
