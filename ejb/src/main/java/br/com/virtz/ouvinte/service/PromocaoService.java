@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import br.com.meuouvinte.dao.IOuvinteDAO;
 import br.com.meuouvinte.dao.IOuvintePromocaoDAO;
+import br.com.meuouvinte.dao.IPromocaoDAO;
 import br.com.meuouvinte.dao.ISorteioDAO;
 import br.com.meuouvinte.dao.PromocaoDAO;
 import br.com.meuouvinte.modelos.Ouvinte;
@@ -22,7 +23,7 @@ public class PromocaoService implements IPromocaoService , Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private PromocaoDAO promocaoDAO;
+	private IPromocaoDAO promocaoDAO;
 
 	@Inject
 	private IOuvinteDAO ouvinteDAO;
@@ -53,14 +54,6 @@ public class PromocaoService implements IPromocaoService , Serializable{
 	public String remover(Promocao promocao){
 		promocaoDAO.remover(promocao);
 		return null;
-	}
-
-	public PromocaoDAO getPromocaoDAO() {
-		return promocaoDAO;
-	}
-
-	public void setPromocaoDAO(PromocaoDAO promocaoDAO) {
-		this.promocaoDAO = promocaoDAO;
 	}
 
 	public List<Promocao> recuperarPromocoesAtivas() {

@@ -13,7 +13,7 @@ import br.com.meuouvinte.modelos.EntidadePersistencia;
 
 public abstract class GeralDAO<T> implements OperacacoesCrud<T> {
 
-    @PersistenceContext
+    @PersistenceContext(unitName="OuvinteDS")
     private EntityManager em;
 	
 	public EntityManager getDatastore() {

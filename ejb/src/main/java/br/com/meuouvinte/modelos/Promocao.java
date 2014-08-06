@@ -22,7 +22,7 @@ import javax.validation.constraints.NotNull;
 	@NamedQuery(name="Promocao.recuperarPromocaoAtivas",
 			query="SELECT p FROM Promocao p WHERE :data BETWEEN p.dataInicio AND p.dataFim  "),
 	@NamedQuery(name="Promocao.recuperarPromocoes",
-			query="SELECT p FROM promocao p WHERE p.id in (:ids)")
+			query="SELECT p FROM Promocao p WHERE p.id in (:ids)")
 })
 public class Promocao implements Serializable, EntidadePersistencia {
 

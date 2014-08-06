@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.persistence.EntityNotFoundException;
 
 import br.com.meuouvinte.dao.IOuvinteDAO;
@@ -12,6 +13,7 @@ import br.com.meuouvinte.dao.ISorteioDAO;
 import br.com.meuouvinte.modelos.Ouvinte;
 import br.com.meuouvinte.modelos.Sorteio;
 
+@Stateless
 public class OuvinteService implements IOuvinteService{
 
 	private static final long serialVersionUID = 1L;
