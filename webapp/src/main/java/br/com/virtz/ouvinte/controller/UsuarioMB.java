@@ -3,6 +3,7 @@ package br.com.virtz.ouvinte.controller;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -19,7 +20,7 @@ public class UsuarioMB  {
 
 	private static final long serialVersionUID = 1L;
 
-	@Inject
+	@EJB
 	private UsuarioService usuarioService;
 
 	private String email;

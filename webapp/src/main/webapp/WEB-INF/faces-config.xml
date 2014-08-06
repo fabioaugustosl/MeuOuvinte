@@ -9,4 +9,16 @@
 
    <!-- Write your navigation rules here. You are encouraged to use CDI for creating @Named managed beans. -->
 
+   
+   	<render-kit>
+   		<renderer>
+   			<component-family>
+   				org.primefaces.component
+   			</component-family>
+   			<renderer-type>
+   				org.primefaces.component.DataTableRenderer
+   			</renderer-type>
+   		</renderer>
+   	</render-kit>
+   
 </faces-config>
